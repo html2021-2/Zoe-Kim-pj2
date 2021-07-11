@@ -43,6 +43,7 @@
 
             function createFullpage() {
                 $('#fullpage').fullpage({
+                    // afterLoad: function (origin, destination, direction) {  // 구역을 불러오고 나서 스크롤이 끝나면 실행
                     onLeave: function (origin, destination, direction) {
                         // 본문2(index1)를 떠난 후 본문1(index0)로 도착, up 방향키를 누른 경우
                         if (origin.index === 1 && destination.index === 0 && direction === 'up') $('#pc_head').removeClass('on active');
