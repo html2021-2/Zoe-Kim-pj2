@@ -43,23 +43,63 @@
 
             function createFullpage() {
                 $('#fullpage').fullpage({
-                    // afterLoad: function (origin, destination, direction) {  // 구역을 불러오고 나서 스크롤이 끝나면 실행
-                    onLeave: function (origin, destination, direction) {
-                        // 본문2(index1)를 떠난 후 본문1(index0)로 도착, up 방향키를 누른 경우
-                        if (origin.index === 1 && destination.index === 0 && direction === 'up') $('#pc_head').removeClass('on active');
-                        else $('#pc_head').addClass('on active');
-
-                        // PC - 애니메이션(풀페이지용)
-                        if (destination.index === 0 || destination.index === 3) {
-                            $('#cnt2, #cnt3').find('.movetop').removeClass('movetop');
+                    scrollingSpeed: 800,
+                    afterLoad: function (origin, destination, direction) {
+                        // PC - 애니메이션 (페이지 도착 후에 천천히)
+                        if (destination.index === 0) {
+                            $('.movetop, .verticalscroll, .greenbox').removeClass('on'); // 모든 애니메이션 초기화
                         }
                         else if (destination.index === 1) {
-                            $('#cnt2 #cnt_wrap').addClass('movetop');
-                            $('#cnt3').find('.movetop').removeClass('movetop');
+                            $('.greenbox').addClass('on'); // 모든 .greenbox 실행
+                            $('#cnt2').siblings().find('.movetop, .verticalscroll, .greenbox').removeClass('on'); // 나를 제외한 모든 애니메이션 제거
                         }
                         else if (destination.index === 2) {
-                            $('#cnt3 h3, #book_list, .link_btn').addClass('movetop');
-                            $('#cnt2').find('.movetop').removeClass('movetop');
+                            $('.greenbox').addClass('on');
+                            $('#cnt3').siblings().find('.movetop, .verticalscroll, .greenbox').removeClass('on');
+                        }
+                        else if (destination.index === 3) {
+                            $('.greenbox').addClass('on');
+                            $('#cnt4').siblings().find('.movetop, .verticalscroll, .greenbox').removeClass('on');
+                        }
+                        else if (destination.index === 4) {
+                            $('.greenbox').addClass('on');
+                            $('#cnt5').siblings().find('.movetop, .verticalscroll, .greenbox').removeClass('on');
+                        }
+                        else if (destination.index === 5) {
+                            $('.greenbox').addClass('on');
+                            $('#cnt6').siblings().find('.movetop, .verticalscroll, .greenbox').removeClass('on');
+                        }
+
+                    },
+                    onLeave: function (origin, destination, direction) {
+                        // 헤더 & top 버튼
+                        if (origin.index === 0 && destination.index === 1 && direction === 'down') {
+                            $('.top_btn').fadeIn();
+                            $('#pc_head').addClass('on active');
+                        }
+                        else if (destination.index === 0 && direction === 'up') {
+                            $('#pc_head').removeClass('on active');
+                            $('.top_btn').fadeOut();
+                        }
+                        else {
+                            $('#pc_head').addClass('on active');
+                        }
+                        
+                        // PC - 애니메이션 (페이지 도착 전에 빨리)
+                        if (destination.index === 1) {
+                            $('.movetop').addClass('on'); // 모든 .movetop 실행
+                        }
+                        else if (destination.index === 2) {
+                            $('.movetop').addClass('on');
+                        }
+                        else if (destination.index === 3) {
+                            $('.movetop, .verticalscroll').addClass('on'); // 모든 .movetop, .verticalscroll 실행
+                        }
+                        else if (destination.index === 4) {
+                            $('.movetop').addClass('on');
+                        }
+                        else if (destination.index === 5) {
+                            $('.movetop').addClass('on');
                         }
                     }
                 });
@@ -70,55 +110,59 @@
 
 <body>
     <div id="skip">
-        <a href="#cnt2">본문 바로가기</a>
+        <a href="#cnt1">본문 바로가기</a>
     </div>
     <div id="wrap">
         <div id="pc_head" class="header">
-            <h1 class="logo">
-                <a href="#"><span class="blind">민음사</span></a>
-            </h1>
-            <nav class="pc_nav">
-                <ul>
-                    <li><a href="#">홈</a></li>
-                    <li><a href="#">소개</a></li>
-                    <li><a href="#">도서</a></li>
-                    <li><a href="#">문학상</a></li>
-                    <li><a href="#">멤버십</a></li>
-                    <li><a href="#">이벤트</a></li>
-                    <li><a href="#">커뮤니티</a></li>
-                </ul>
-                <button class="search" type="button">
-                    <span class="blind">검색창 열기</span>
-                </button>
-            </nav>
+            <div class="heder_wrap">
+                <h1 class="logo">
+                    <a href="index.html"><span class="blind">민음사</span></a>
+                </h1>
+                <nav class="pc_nav">
+                    <ul>
+                        <li><a href="#">홈</a></li>
+                        <li><a href="#">소개</a></li>
+                        <li><a href="#">도서</a></li>
+                        <li><a href="#">문학상</a></li>
+                        <li><a href="#">멤버십</a></li>
+                        <li><a href="#">이벤트</a></li>
+                        <li><a href="#">커뮤니티</a></li>
+                    </ul>
+                    <button class="search" type="button">
+                        <span class="blind">검색창 열기</span>
+                    </button>
+                </nav>
+            </div>
         </div>
         <div id="m_head" class="header">
-            <h1 class="logo">
-                <a href="#"><span class="blind">민음사</span></a>
-            </h1>
-            <div class="m_nav">
-                <button class="search" type="button">
-                    <span class="blind">검색창 열기</span>
-                </button>
-                <button class="menu_open" type="button">
-                    <span class="blind">전체메뉴 열기</span>
-                </button>
-                <div class="menu_wrap">
-                    <a href="#" class="first"><img src="images/common/header_logo.png" alt="민음사"></a>
-                    <nav class="menu">
-                        <ul>
-                            <li><a href="#">홈</a></li>
-                            <li><a href="#">소개</a></li>
-                            <li><a href="#">도서</a></li>
-                            <li><a href="#">문학상</a></li>
-                            <li><a href="#">멤버십</a></li>
-                            <li><a href="#">이벤트</a></li>
-                            <li><a href="#">커뮤니티</a></li>
-                        </ul>
-                    </nav>
-                    <button class="menu_close last" type="button">
-                        <img src="images/common/close_btn.png" alt="전체메뉴 닫기">
+            <div class="heder_wrap">
+                <h1 class="logo">
+                    <a href="#"><span class="blind">민음사</span></a>
+                </h1>
+                <div class="m_nav">
+                    <button class="search" type="button">
+                        <span class="blind">검색창 열기</span>
                     </button>
+                    <button class="menu_open" type="button">
+                        <span class="blind">전체메뉴 열기</span>
+                    </button>
+                    <div class="menu_wrap">
+                        <a href="#" class="first"><img src="images/common/header_logo.png" alt="민음사"></a>
+                        <nav class="menu">
+                            <ul>
+                                <li><a href="#">홈</a></li>
+                                <li><a href="#">소개</a></li>
+                                <li><a href="#">도서</a></li>
+                                <li><a href="#">문학상</a></li>
+                                <li><a href="#">멤버십</a></li>
+                                <li><a href="#">이벤트</a></li>
+                                <li><a href="#">커뮤니티</a></li>
+                            </ul>
+                        </nav>
+                        <button class="menu_close last" type="button">
+                            <img src="images/common/close_btn.png" alt="전체메뉴 닫기">
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -132,7 +176,6 @@
                     <!-- 슬라이더 컨텐츠 그룹 -->
                     <div class="swiper-wrapper">
                         <div class="swiper-slide slide1">
-                            <img src="images/main/m_cnt1_img01.png" alt="" class="m_img">
                             <div class="cnt_box">
                                 <h3>
                                     가즈오 이시구로 <br>
@@ -144,7 +187,6 @@
                             </div>
                         </div>
                         <div class="swiper-slide slide2">
-                            <img src="images/main/m_cnt1_img02.png" alt="" class="m_img">
                             <div class="cnt_box">
                                 <h3>
                                     책을 일상으로, <br>
@@ -156,7 +198,6 @@
                             </div>
                         </div>
                         <div class="swiper-slide slide3">
-                            <img src="images/main/m_cnt1_img03.png" alt="" class="m_img">
                             <div class="cnt_box">
                                 <h3>
                                     제 44회 오늘의 작가상 <br>
@@ -195,13 +236,13 @@
             </section>
             <section class="section fp-auto-height" id="cnt2">
                 <div class="wide_section">
-                    <div id="cnt_wrap">
+                    <div class="cnt_wrap movetop">
                         <h2 class="blind">소개하는 말</h2>
                         <p>민음사는</p>
                         <h3>
                             시대의 흐름에 앞서가는 <br>
                             젊은 감각과 열린 사고를 가진 <br>
-                            <strong>21세기 출판의 선도자입니다.</strong>
+                            <strong class="greenbox">21세기 출판의 선도자입니다.</strong>
                         </h3>
                         <a href="#" class="link_btn">소개 바로가기</a>
                     </div>
@@ -209,13 +250,13 @@
             </section>
             <section class="section" id="cnt3">
                 <div class="wide_section">
-                    <div id="cnt_wrap">
+                    <div class="cnt_wrap">
                         <h2 class="blind">신간 추천</h2>
-                        <h3>
+                        <h3 class="movetop">
                             민음사의 <br>
-                            <strong>신간</strong>을 만나보세요
+                            <strong class="greenbox">신간</strong>을 만나보세요
                         </h3>
-                        <ul id="book_list">
+                        <ul id="book_list" class="movetop">
                             <li>
                                 <a href="#">
                                     <div class="hover_book">
@@ -282,67 +323,96 @@
                                 </a>
                             </li>
                         </ul>
-                        <ul id="m_book_list">
+                        <ul id="m_book_list" class="movetop">
                             <li>
-                                <a href="#">
-                                    <img src="images/main/cnt3_img01.jpg" alt="남아 있는 나날">
-                                    <div class="m_txt_box">
-                                        <strong>남아 있는 나날</strong>
-                                        <p><b>글 |</b> 가즈오 이시구로 <br>
-                                        <b>출판사 |</b> 민음사</p>
-                                        <span>젊은 날의 사랑은 지나갔지만 남아 있는 날들에도 희망은 있다. 인생의 황혼 녘에 비로소 깨달은 삶의 가치와 잃어버린 사랑 그 허망함과 애잔함을 내밀하게 그려 낸 가즈오 이시구로의 『남아 있는 나날』(송은경 번역)이 민음사에서 전면적 번역 개정을 거쳐 새로운 디자인과 판형으로 출간되었다. 2017년 노벨문학상을 수상하며 일본계 영국 작가로 현대 세계 문학을 대표하는 거장이 된 가즈오 이시구로의 『남아 있는 나날』은…</span>
-                                    </div>
+                                <a href="">
+                                    <img src="images/main/cnt3_img01.jpg" alt="">
                                 </a>
+                                <div class="m_txt_box">
+                                    <strong>남아 있는 나날</strong>
+                                    <p><b>글 |</b> 가즈오 이시구로 <br>
+                                    <b>출판사 |</b> 민음사</p>
+                                    <span>젊은 날의 사랑은 지나갔지만 남아 있는 날들에도 희망은 있다. 인생의 황혼 녘에 비로소 깨달은 삶의 가치와 잃어버린 사랑 그 허망함과 애잔함을 내밀하게 그려 낸 가즈오 이시구로의 『남아 있는 나날』(송은경 번역)이 민음사에서 전면적 번역 개정을 거쳐 새로운 디자인과 판형으로 출간되었다. 2017년 노벨문학상을 수상하며 일본계 영국 작가로 현대 세계 문학을 대표하는 거장이 된 가즈오 이시구로의 『남아 있는 나날』은</span>
+                                </div>
                             </li>
                             <li>
-                                <a href="#">
-                                    <img src="images/main/cnt3_img02.jpg" alt="나를 보내지 마">
-                                    <div class="m_txt_box">
-                                        <strong>나를 보내지 마</strong>
-                                        <p><b>글 |</b> 가즈오 이시구로 <br>
-                                        <b>출판사 |</b> 민음사</p>
-                                        <span>2017년 노벨 문학상 수상자이자 현대 영미권 문학을 이끌어 가는 거장 가즈오 이시구로의 대표작, 『나를 보내지 마』(김남주 번역)가 민음사에서 전면적 번역 개정을 거쳐 새로운 디자인과 판형으로 출간되었다. 여느 시골 학교와도 같이 평온해 보이지만 외부와의 접촉이 일절 차단된 ‘헤일셤’. 어느 날 루스 선생님은 학생들에게, 그들의 운명이 이미 정해져 있다는 사실을 알려준다. 선생님의 충격적인 발언으로 아이들은 자신들의 존재성에 대해 진지하게 생각하게 되는데…</span>
-                                    </div>
+                                <a href="">
+                                    <img src="images/main/cnt3_img02.jpg" alt="">
                                 </a>
+                                <div class="m_txt_box">
+                                    <strong>나를 보내지 마</strong>
+                                    <p><b>글 |</b> 가즈오 이시구로 <br>
+                                    <b>출판사 |</b> 민음사</p>
+                                    <span>2017년 노벨 문학상 수상자이자 현대 영미권 문학을 이끌어 가는 거장 가즈오 이시구로의 대표작, 『나를 보내지 마』(김남주 번역)가 민음사에서 전면적 번역 개정을 거쳐 새로운 디자인과 판형으로 출간되었다. 여느 시골 학교와도 같이 평온해 보이지만 외부와의 접촉이 일절 차단된 ‘헤일셤’. 어느 날 루스 선생님은 학생들에게, 그들의 운명이 이미 정해져 있다는 사실을 알려준다. 선생님의 충격적인 발언으로 아이들은 자신들의 존재성에 대해 진지하게 생각하게 되는데</span>
+                                </div>
                             </li>
                             <li>
-                                <a href="#">
-                                    <img src="images/main/cnt3_img03.jpg" alt="녹턴">
-                                    <div class="m_txt_box">
-                                        <strong>녹턴</strong>
-                                        <p><b>글 |</b> 가즈오 이시구로 <br>
-                                        <b>출판사 |</b> 민음사</p>
-                                        <span>음악을 문학 속으로 끌어들여 절묘하게 녹여 낸 이 작품은, 크루너 가수가 부르는 나직한 세레나데부터 할리우드의 호텔 방에 울려 퍼지는 색소폰, 베네치아의 광장을 메운 첼로의 「대부」 테마곡까지 음악이 흐르는, 사랑과 세월에 관한 다섯 편의 이야기를 담고 있다. “마치 다섯 악장으로 이루어진 음악 작품처럼 통합적으로 구상”(《옵서버》)된 이 작품은 무엇보다 음악이 절정에 달하는 순간, 인생에 대한 성찰이 빛을 발한다. 젊은 시절 한때 싱어송라이터를 꿈꾸었던 이시구로의…</span>
-                                    </div>
+                                <a href="">
+                                    <img src="images/main/cnt3_img03.jpg" alt="">
                                 </a>
+                                <div class="m_txt_box">
+                                    <strong>녹턴</strong>
+                                    <p><b>글 |</b> 가즈오 이시구로 <br>
+                                    <b>출판사 |</b> 민음사</p>
+                                    <span>음악을 문학 속으로 끌어들여 절묘하게 녹여 낸 이 작품은, 크루너 가수가 부르는 나직한 세레나데부터 할리우드의 호텔 방에 울려 퍼지는 색소폰, 베네치아의 광장을 메운 첼로의 「대부」 테마곡까지 음악이 흐르는, 사랑과 세월에 관한 다섯 편의 이야기를 담고 있다. “마치 다섯 악장으로 이루어진 음악 작품처럼 통합적으로 구상”(《옵서버》)된 이 작품은 무엇보다 음악이 절정에 달하는 순간, 인생에 대한 성찰이 빛을 발한다. 젊은 시절 한때 싱어송라이터를 꿈꾸었던 이시구로의</span>
+                                </div>
                             </li>
                         </ul>
-                        <a href="#" class="link_btn">신간 더보기</a>
+                        <a href="#" class="link_btn movetop">신간 더보기</a>
                     </div>
                 </div>
             </section>
             <section class="section" id="cnt4">
                 <div class="wide_section">
-                    <div id="cnt_wrap">
+                    <div class="cnt_wrap">
                         <h2 class="blind">민음사 멤버십</h2>
-                        <div class="left_box">
+                        <div class="left_box movetop">
                             <p>민음사는</p>
                             <h3>
-                                <strong>새로운 문학과 <br>
-                                참된 지성의 세계</strong>를 <br>
+                                <strong class="greenbox">새로운 문학과</strong> <br>
+                                <strong class="greenbox">참된 지성의 세계</strong>를 <br>
                                 끝없이 탐색합니다.
                             </h3>
                             <a href="#" class="link_btn">멤버십 바로가기</a>
                         </div>
-                        <div class="right_box">
-                            <ul class="first">
+                        <div class="m_left_box movetop">
+                            <p>민음사는</p>
+                            <h3>
+                                <strong class="greenbox">새로운 문학</strong>과
+                                <strong class="greenbox">참된 지성</strong>의 세계를 <br>
+                                끝없이 탐색합니다.
+                            </h3>
+                            <a href="#" class="link_btn">멤버십 바로가기</a>
+                        </div>
+                        <div class="right_box movetop">
+                            <ul class="first verticalscroll">
+                                <li><img src="images/main/cnt4_img01.png" alt=""><span>민음 북클럽</span></li>
+                                <li><img src="images/main/cnt4_img02.png" alt=""><span>아카데미 / 북토크</span></li>
+                                <li><img src="images/main/cnt4_img03.png" alt=""><span>독서모임 캘린더</span></li>
+                                <li><img src="images/main/cnt4_img04.png" alt=""><span>민음사 패밀리데이</span></li>
+                                <li><img src="images/main/cnt4_img05.png" alt=""><span>e - 스탬프</span></li>
+                                <li><img src="images/main/cnt4_img01.png" alt=""><span>민음 북클럽</span></li>
+                                <li><img src="images/main/cnt4_img02.png" alt=""><span>아카데미 / 북토크</span></li>
+                                <li><img src="images/main/cnt4_img03.png" alt=""><span>독서모임 캘린더</span></li>
+                                <li><img src="images/main/cnt4_img04.png" alt=""><span>민음사 패밀리데이</span></li>
+                                <li><img src="images/main/cnt4_img05.png" alt=""><span>e - 스탬프</span></li>
                                 <li><img src="images/main/cnt4_img01.png" alt=""><span>민음 북클럽</span></li>
                                 <li><img src="images/main/cnt4_img02.png" alt=""><span>아카데미 / 북토크</span></li>
                                 <li><img src="images/main/cnt4_img03.png" alt=""><span>독서모임 캘린더</span></li>
                                 <li><img src="images/main/cnt4_img04.png" alt=""><span>민음사 패밀리데이</span></li>
                                 <li><img src="images/main/cnt4_img05.png" alt=""><span>e - 스탬프</span></li>
                             </ul>
-                            <ul class="second">
+                            <ul class="second verticalscroll">
+                                <li><img src="images/main/cnt4_img06.png" alt=""><span>소셜 리딩 프로그램</span></li>
+                                <li><img src="images/main/cnt4_img07.png" alt=""><span>민음사 X 동네서점</span></li>
+                                <li><img src="images/main/cnt4_img08.png" alt=""><span>민음 북샵</span></li>
+                                <li><img src="images/main/cnt4_img09.png" alt=""><span>한편 정기구독</span></li>
+                                <li><img src="images/main/cnt4_img10.png" alt=""><span>릿터 정기구독</span></li>
+                                <li><img src="images/main/cnt4_img06.png" alt=""><span>소셜 리딩 프로그램</span></li>
+                                <li><img src="images/main/cnt4_img07.png" alt=""><span>민음사 X 동네서점</span></li>
+                                <li><img src="images/main/cnt4_img08.png" alt=""><span>민음 북샵</span></li>
+                                <li><img src="images/main/cnt4_img09.png" alt=""><span>한편 정기구독</span></li>
+                                <li><img src="images/main/cnt4_img10.png" alt=""><span>릿터 정기구독</span></li>
                                 <li><img src="images/main/cnt4_img06.png" alt=""><span>소셜 리딩 프로그램</span></li>
                                 <li><img src="images/main/cnt4_img07.png" alt=""><span>민음사 X 동네서점</span></li>
                                 <li><img src="images/main/cnt4_img08.png" alt=""><span>민음 북샵</span></li>
@@ -354,87 +424,81 @@
                 </div>
             </section>
             <section class="section" id="cnt5">
-                <div class="wide_section">
-                    <div id="cnt_wrap">
-                        <h2 class="blind">문학상</h2>
-                        <div class="left_box">
-                            <p>오늘의 작가상이</p>
-                            <h3>
-                                젊은 작가에게는 <strong>따뜻한 격려</strong>가, <br>
-                                오늘의 독자에게는 <strong>겸허한 안내자</strong>가 <br>
-                                될 것이라 기대합니다.
-                            </h3>
-                            <a href="#" class="link_btn transparent">문학상 바로가기</a>
-                        </div>
-                        <div class="video_bg">
-                            <video poster="images/main/cnt5_video_poster.png" autoplay muted playsinline preload="auto" loop data-autoplay>
-                                <source src="video/cnt5_video_bg.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                <h2 class="blind">문학상</h2>
+                <div class="left_box movetop">
+                    <div class="left_box_wrap">
+                        <p>오늘의 작가상이</p>
+                        <h3>
+                            젊은 작가에게는 <strong class="greenbox">따뜻한 격려</strong>가, <br>
+                            오늘의 독자에게는 <strong class="greenbox">겸허한 안내자</strong>가 <br>
+                            될 것이라 기대합니다.
+                        </h3>
+                        <a href="#" class="link_btn transparent">문학상 바로가기</a>
                     </div>
                 </div>
+                <video class="video_bg" poster="images/main/cnt5_video_poster.png" autoplay data-autoplay muted playsinline preload="auto" loop>
+                    <source src="video/cnt5_video_bg.mp4" type="video/mp4">
+                </video>
             </section>
             <section class="section" id="cnt6">
-                <div class="wide_section">
-                    <div id="cnt_wrap">
-                        <h2 class="blind">민음사 관련 소식 및 이벤트</h2>
-                        <div class="notice_box">
-                            <h3>
-                                민음사의 <br>
-                                <strong>새로운 소식</strong>을 확인하세요
-                            </h3>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <div class="thumb_box">
-                                            <div class="dim_thumbnail"></div>
-                                            <img src="images/main/cnt6_img01.png" alt="">
-                                        </div>
-                                        <div class="txt_box">
-                                            <p>‘길 잃은 세대’를 대표하는 작가 - 『디 에센셜 헤밍웨이』 에세이를 단 한 권에 만나다!</p>
-                                            <span>2021.06.24</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="thumb_box">
-                                            <div class="dim_thumbnail"></div>
-                                            <img src="images/main/cnt6_img02.png" alt="">
-                                        </div>
-                                        <div class="txt_box">
-                                            <p>2021 상반기 온라인 패밀리데이 (6/24 오전 10시 OPEN)</p>
-                                            <span>2021.06.20</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="thumb_box">
-                                            <div class="dim_thumbnail"></div>
-                                            <img src="images/main/cnt6_img03.png" alt="">
-                                        </div>
-                                        <div class="txt_box">
-                                            <p>책과 향 - 1회 : 위로의 감각 - 글쓰기로 향을 말한다면 (6/15 오후 3시 OPEN)</p>
-                                            <span>2021.06.08</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="thumb_box">
-                                            <div class="dim_thumbnail"></div>
-                                            <img src="images/main/cnt6_img04.png" alt="">
-                                        </div>
-                                        <div class="txt_box">
-                                            <p>가즈오 이시구로 리커버 개정판 - 북램프 증정 이벤트</p>
-                                            <span>2021.06.03</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <a href="#" class="link_btn">소식 더보기</a>
-                        </div>
+                <div class="cnt_wrap">
+                    <h2 class="blind">민음사 관련 소식 및 이벤트</h2>
+                    <div class="notice_box">
+                        <h3 class="movetop">
+                            민음사의 <br>
+                            <strong class="greenbox">새로운 소식</strong>을 확인하세요
+                        </h3>
+                        <ul class="movetop">
+                            <li>
+                                <a href="#">
+                                    <div class="thumb_box">
+                                        <div class="dim_thumbnail"></div>
+                                        <img src="images/main/cnt6_img01.png" alt="">
+                                    </div>
+                                    <div class="txt_box">
+                                        <p>‘길 잃은 세대’를 대표하는 작가 - 『디 에센셜 헤밍웨이』 에세이를 단 한 권에 만나다!</p>
+                                        <span>2021.06.24</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="thumb_box">
+                                        <div class="dim_thumbnail"></div>
+                                        <img src="images/main/cnt6_img02.png" alt="">
+                                    </div>
+                                    <div class="txt_box">
+                                        <p>2021 상반기 온라인 패밀리데이 (6/24 오전 10시 OPEN)</p>
+                                        <span>2021.06.20</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="thumb_box">
+                                        <div class="dim_thumbnail"></div>
+                                        <img src="images/main/cnt6_img03.png" alt="">
+                                    </div>
+                                    <div class="txt_box">
+                                        <p>책과 향 - 1회 : 위로의 감각 - 글쓰기로 향을 말한다면 (6/15 오후 3시 OPEN)</p>
+                                        <span>2021.06.08</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="thumb_box">
+                                        <div class="dim_thumbnail"></div>
+                                        <img src="images/main/cnt6_img04.png" alt="">
+                                    </div>
+                                    <div class="txt_box">
+                                        <p>가즈오 이시구로 리커버 개정판 - 북램프 증정 이벤트</p>
+                                        <span>2021.06.03</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="#" class="link_btn movetop">소식 더보기</a>
                     </div>
                 </div>
             </section>
@@ -480,7 +544,6 @@
                             <div class="link_social">
                                 <a href="https://blog.naver.com/minumworld">블로그</a>
                                 <a href="https://www.facebook.com/MinumsaBooks">페이스북</a>
-                                <a href="https://www.youtube.com/minumsatv">유튜브</a>
                             </div>
                         </div>
                     </div>
