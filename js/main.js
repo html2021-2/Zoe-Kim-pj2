@@ -42,7 +42,6 @@ $(document).ready(function () {
   })
 
   // #cnt3 #book_list li a에 마우스와 포커스가 진입하거나 빠져 나갈 때
-  // const $listEle = $('#book_list li a'); 이 정도에 변수 생성은 안하는 것이 -> 전역변수쟎아요.
   $('#book_list li a').on({
     'mouseenter focus': function () {
       $(this).addClass('on').children('.hover_book').stop().slideDown();
