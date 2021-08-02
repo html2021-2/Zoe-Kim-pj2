@@ -11,11 +11,11 @@
   &::before{width: 100%;}
 }
 .movetop{opacity: 0;transform: translateY(40px);@include transition(all 1.2s);}
-.movetop.on{@include animation(movetop 1.2s ease-out .5s forwards);}
+.movetop.on{@include animation(movetop 1.2s ease-out .5s forwards);@include transition(background .3s);}
+.movetop.active{@include transition(all 1.2s ease-out .5s);opacity: 1;transform: translateY(0);}
+
 .verticalscroll.on{@include animation(verticalscroll 30s linear infinite);}
 .horizontalscroll.on{@include animation(horizontalscroll 30s linear infinite);}
-
-.movetop.active{@include transition(all 1.2s ease-out .5s);opacity: 1;transform: translateY(0);}
 
 /* motion keyframes */
 @keyframes movetop {
@@ -84,9 +84,9 @@
   .swiper-container{margin: 0 auto;overflow: hidden;width: 100vw;height: 100vh;color: $white;}
   .swiper-slide{
     background: no-repeat center / cover;
-    &.slide1{background-image: url("../images/main/cnt1_img01.jpeg");}
-    &.slide2{background-image: url("../images/main/cnt1_img02.jpeg");}
-    &.slide3{background-image: url("../images/main/cnt1_img03.jpeg");}
+    &.slide1{background-image: url("../images/main/cnt1_img01.jpg");}
+    &.slide2{background-image: url("../images/main/cnt1_img02.jpg");}
+    &.slide3{background-image: url("../images/main/cnt1_img03.jpg");}
   }  
   .cnt_box{
     @include translateY-50;
@@ -304,6 +304,7 @@
 
 // 태블릿 (1152px)
 @media screen and (max-width: 1152px) {
+  body{background: #000;}
   #cnt1{
     .swiper-container{height: 90vh;}
   }
@@ -376,7 +377,7 @@
     }
   }
   #cnt5{
-    height: 860px;
+    height: 90vh;
       .left_box{
         .left_box_wrap{
           top: 50%;
@@ -412,9 +413,9 @@
   #cnt1{
     .swiper-container{height: 80vh;}
     .swiper-slide{
-      &.slide1{background-image: url("../images/main/m_cnt1_img01.png");}
-      &.slide2{background-image: url("../images/main/m_cnt1_img02.png");}
-      &.slide3{background-image: url("../images/main/m_cnt1_img03.png");}
+      &.slide1{background-image: url("../images/main/m_cnt1_img01.jpg");}
+      &.slide2{background-image: url("../images/main/m_cnt1_img02.jpg");}
+      &.slide3{background-image: url("../images/main/m_cnt1_img03.jpg");}
     }  
     .cnt_box{
       left: 24px;
@@ -475,7 +476,6 @@
     }
   }
   #cnt5{
-    height: 90vh;
       .left_box{
         .left_box_wrap{
           left: 24px;

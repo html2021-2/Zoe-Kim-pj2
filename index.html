@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> 민음사 </title>
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:regular,500,700" rel="stylesheet">
     <link rel="apple-touch-icon" href="images/common/favicon.ico">
     <link rel="shortcut icon" href="images/common/favicon.ico">
     <link rel="icon" href="images/common/favicon.ico">
@@ -15,74 +14,6 @@
     <link rel="stylesheet" href="css/fullpage.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/main.css">
-
-    <script src="js/jquery-1.12.4.min.js"></script>
-    <script src="js/swiper-bundle.min.js"></script>
-    <script src="js/fullpage.min.js"></script>
-    <script src="js/common.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-        $(document).ready(function () {
-            // resize, scroll, mousemove 이벤트는 누적되는 실행문으로, 성능이 느려질수 있어서 지정한 시간이 지날때 한번씩만 동작할수 있게 하여 성능을 향상시킨다.
-            let timer = 0;
-            $(window).on('resize', function () {
-                clearTimeout(timer);
-                timer = setTimeout(function () {
-                    // 1152px 초과인 경우, fullpage 호출(pc인 경우)
-                    if ($(this).width() > 1152) {
-                        createFullpage();
-                    } else {
-                        // fullpage가 동작중인 경우만 제거
-                        if ($('#fullpage').hasClass('fullpage-wrapper')) {
-                            fullpage_api.destroy('all'); // 적용된 fullpage를 제거할 경우 사용
-                        }
-                    }
-                }, 100);
-            });
-            $(window).trigger('resize');
-
-            function createFullpage() {
-                $('#fullpage').fullpage({
-                    scrollingSpeed: 800,
-                    afterLoad: function (origin, destination, direction) {
-                        // PC - 애니메이션 (페이지 도착 후에 천천히)
-                        for (let i = 0; i < 6; i++) {
-                            if (destination.index === i) {
-                                $('.greenbox').addClass('on'); // 모든 .greenbox 실행
-                                $('#cnt' + (i +1)).siblings().find('.movetop, .verticalscroll, .greenbox').removeClass('on'); // 나를 제외한 모든 애니메이션 제거
-                                if (destination.index === 0) {
-                                    $('.movetop, .verticalscroll, .greenbox').removeClass('on'); // 모든 애니메이션 초기화
-                                }
-                            }
-                        }
-                    },
-                    onLeave: function (origin, destination, direction) {
-                        // 헤더 & top 버튼
-                        if (origin.index === 0 && destination.index === 1 && direction === 'down') {
-                            $('.top_btn').fadeIn();
-                            $('#pc_head').addClass('on active');
-                        }
-                        else if (destination.index === 0 && direction === 'up') {
-                            $('#pc_head').removeClass('on active');
-                            $('.top_btn').fadeOut();
-                        }
-                        else {
-                            $('#pc_head').addClass('on active');
-                        }
-                        
-                        // PC - 애니메이션 (페이지 도착 전에 빨리)
-                        for (let i = 1; i < 6; i++) {
-                            if (destination.index === 3) {
-                                $('.movetop, .verticalscroll').addClass('on'); // 모든 .movetop, .verticalscroll 실행
-                            } else if (destination.index === i) {
-                                $('.movetop').addClass('on'); // 모든 .movetop 실행
-                            }
-                        }
-                    }
-                });
-            }
-        });
-    </script>
 </head>
 
 <body>
@@ -363,38 +294,38 @@
                         </div>
                         <div class="right_box movetop">
                             <ul class="first verticalscroll">
-                                <li><img src="images/main/cnt4_img01.png" alt=""><span>민음 북클럽</span></li>
-                                <li><img src="images/main/cnt4_img02.png" alt=""><span>아카데미 / 북토크</span></li>
-                                <li><img src="images/main/cnt4_img03.png" alt=""><span>독서모임 캘린더</span></li>
-                                <li><img src="images/main/cnt4_img04.png" alt=""><span>민음사 패밀리데이</span></li>
-                                <li><img src="images/main/cnt4_img05.png" alt=""><span>e - 스탬프</span></li>
-                                <li><img src="images/main/cnt4_img01.png" alt=""><span>민음 북클럽</span></li>
-                                <li><img src="images/main/cnt4_img02.png" alt=""><span>아카데미 / 북토크</span></li>
-                                <li><img src="images/main/cnt4_img03.png" alt=""><span>독서모임 캘린더</span></li>
-                                <li><img src="images/main/cnt4_img04.png" alt=""><span>민음사 패밀리데이</span></li>
-                                <li><img src="images/main/cnt4_img05.png" alt=""><span>e - 스탬프</span></li>
-                                <li><img src="images/main/cnt4_img01.png" alt=""><span>민음 북클럽</span></li>
-                                <li><img src="images/main/cnt4_img02.png" alt=""><span>아카데미 / 북토크</span></li>
-                                <li><img src="images/main/cnt4_img03.png" alt=""><span>독서모임 캘린더</span></li>
-                                <li><img src="images/main/cnt4_img04.png" alt=""><span>민음사 패밀리데이</span></li>
-                                <li><img src="images/main/cnt4_img05.png" alt=""><span>e - 스탬프</span></li>
+                                <li><img src="images/main/cnt4_img01.jpg" alt=""><span>민음 북클럽</span></li>
+                                <li><img src="images/main/cnt4_img02.jpg" alt=""><span>아카데미 / 북토크</span></li>
+                                <li><img src="images/main/cnt4_img03.jpg" alt=""><span>독서모임 캘린더</span></li>
+                                <li><img src="images/main/cnt4_img04.jpg" alt=""><span>민음사 패밀리데이</span></li>
+                                <li><img src="images/main/cnt4_img05.jpg" alt=""><span>e - 스탬프</span></li>
+                                <li><img src="images/main/cnt4_img01.jpg" alt=""><span>민음 북클럽</span></li>
+                                <li><img src="images/main/cnt4_img02.jpg" alt=""><span>아카데미 / 북토크</span></li>
+                                <li><img src="images/main/cnt4_img03.jpg" alt=""><span>독서모임 캘린더</span></li>
+                                <li><img src="images/main/cnt4_img04.jpg" alt=""><span>민음사 패밀리데이</span></li>
+                                <li><img src="images/main/cnt4_img05.jpg" alt=""><span>e - 스탬프</span></li>
+                                <li><img src="images/main/cnt4_img01.jpg" alt=""><span>민음 북클럽</span></li>
+                                <li><img src="images/main/cnt4_img02.jpg" alt=""><span>아카데미 / 북토크</span></li>
+                                <li><img src="images/main/cnt4_img03.jpg" alt=""><span>독서모임 캘린더</span></li>
+                                <li><img src="images/main/cnt4_img04.jpg" alt=""><span>민음사 패밀리데이</span></li>
+                                <li><img src="images/main/cnt4_img05.jpg" alt=""><span>e - 스탬프</span></li>
                             </ul>
                             <ul class="second verticalscroll">
-                                <li><img src="images/main/cnt4_img06.png" alt=""><span>소셜 리딩 프로그램</span></li>
-                                <li><img src="images/main/cnt4_img07.png" alt=""><span>민음사 X 동네서점</span></li>
-                                <li><img src="images/main/cnt4_img08.png" alt=""><span>민음 북샵</span></li>
-                                <li><img src="images/main/cnt4_img09.png" alt=""><span>한편 정기구독</span></li>
-                                <li><img src="images/main/cnt4_img10.png" alt=""><span>릿터 정기구독</span></li>
-                                <li><img src="images/main/cnt4_img06.png" alt=""><span>소셜 리딩 프로그램</span></li>
-                                <li><img src="images/main/cnt4_img07.png" alt=""><span>민음사 X 동네서점</span></li>
-                                <li><img src="images/main/cnt4_img08.png" alt=""><span>민음 북샵</span></li>
-                                <li><img src="images/main/cnt4_img09.png" alt=""><span>한편 정기구독</span></li>
-                                <li><img src="images/main/cnt4_img10.png" alt=""><span>릿터 정기구독</span></li>
-                                <li><img src="images/main/cnt4_img06.png" alt=""><span>소셜 리딩 프로그램</span></li>
-                                <li><img src="images/main/cnt4_img07.png" alt=""><span>민음사 X 동네서점</span></li>
-                                <li><img src="images/main/cnt4_img08.png" alt=""><span>민음 북샵</span></li>
-                                <li><img src="images/main/cnt4_img09.png" alt=""><span>한편 정기구독</span></li>
-                                <li><img src="images/main/cnt4_img10.png" alt=""><span>릿터 정기구독</span></li>
+                                <li><img src="images/main/cnt4_img06.jpg" alt=""><span>소셜 리딩 프로그램</span></li>
+                                <li><img src="images/main/cnt4_img07.jpg" alt=""><span>민음사 X 동네서점</span></li>
+                                <li><img src="images/main/cnt4_img08.jpg" alt=""><span>민음 북샵</span></li>
+                                <li><img src="images/main/cnt4_img09.jpg" alt=""><span>한편 정기구독</span></li>
+                                <li><img src="images/main/cnt4_img10.jpg" alt=""><span>릿터 정기구독</span></li>
+                                <li><img src="images/main/cnt4_img06.jpg" alt=""><span>소셜 리딩 프로그램</span></li>
+                                <li><img src="images/main/cnt4_img07.jpg" alt=""><span>민음사 X 동네서점</span></li>
+                                <li><img src="images/main/cnt4_img08.jpg" alt=""><span>민음 북샵</span></li>
+                                <li><img src="images/main/cnt4_img09.jpg" alt=""><span>한편 정기구독</span></li>
+                                <li><img src="images/main/cnt4_img10.jpg" alt=""><span>릿터 정기구독</span></li>
+                                <li><img src="images/main/cnt4_img06.jpg" alt=""><span>소셜 리딩 프로그램</span></li>
+                                <li><img src="images/main/cnt4_img07.jpg" alt=""><span>민음사 X 동네서점</span></li>
+                                <li><img src="images/main/cnt4_img08.jpg" alt=""><span>민음 북샵</span></li>
+                                <li><img src="images/main/cnt4_img09.jpg" alt=""><span>한편 정기구독</span></li>
+                                <li><img src="images/main/cnt4_img10.jpg" alt=""><span>릿터 정기구독</span></li>
                             </ul>
                         </div>
                     </div>
@@ -413,7 +344,7 @@
                         <a href="#" class="link_btn transparent">문학상 바로가기</a>
                     </div>
                 </div>
-                <video class="video_bg" poster="images/main/cnt5_video_poster.png" autoplay data-autoplay muted playsinline preload="auto" loop>
+                <video class="video_bg" poster="images/main/cnt5_video_poster.jpg" autoplay data-autoplay muted playsinline preload="auto" loop>
                     <source src="video/cnt5_video_bg.mp4" type="video/mp4">
                 </video>
             </section>
@@ -430,7 +361,7 @@
                                 <a href="#">
                                     <div class="thumb_box">
                                         <div class="dim_thumbnail"></div>
-                                        <img src="images/main/cnt6_img01.png" alt="">
+                                        <img src="images/main/cnt6_img01.jpg" alt="">
                                     </div>
                                     <div class="txt_box">
                                         <p>‘길 잃은 세대’를 대표하는 작가 - 『디 에센셜 헤밍웨이』 에세이를 단 한 권에 만나다!</p>
@@ -442,7 +373,7 @@
                                 <a href="#">
                                     <div class="thumb_box">
                                         <div class="dim_thumbnail"></div>
-                                        <img src="images/main/cnt6_img02.png" alt="">
+                                        <img src="images/main/cnt6_img02.jpg" alt="">
                                     </div>
                                     <div class="txt_box">
                                         <p>2021 상반기 온라인 패밀리데이 (6/24 오전 10시 OPEN)</p>
@@ -454,7 +385,7 @@
                                 <a href="#">
                                     <div class="thumb_box">
                                         <div class="dim_thumbnail"></div>
-                                        <img src="images/main/cnt6_img03.png" alt="">
+                                        <img src="images/main/cnt6_img03.jpg" alt="">
                                     </div>
                                     <div class="txt_box">
                                         <p>책과 향 - 1회 : 위로의 감각 - 글쓰기로 향을 말한다면 (6/15 오후 3시 OPEN)</p>
@@ -466,7 +397,7 @@
                                 <a href="#">
                                     <div class="thumb_box">
                                         <div class="dim_thumbnail"></div>
-                                        <img src="images/main/cnt6_img04.png" alt="">
+                                        <img src="images/main/cnt6_img04.jpg" alt="">
                                     </div>
                                     <div class="txt_box">
                                         <p>가즈오 이시구로 리커버 개정판 - 북램프 증정 이벤트</p>
@@ -527,6 +458,76 @@
             </div>
         </div>
     </div>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/fullpage.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            // resize, scroll, mousemove 이벤트는 누적되는 실행문으로, 성능이 느려질수 있어서 지정한 시간이 지날때 한번씩만 동작할수 있게 하여 성능을 향상시킨다.
+            let timer = 0;
+            $(window).on('resize', function () {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    // 1152px 초과인 경우, fullpage 호출(pc인 경우)
+                    // https://developer.mozilla.org/ko/docs/Web/API/Window/innerWidth
+                    // 브라우저 윈도우의 뷰포트 너비로, 수직 스크롤바가 존재한다면 포함합니다.
+                    // pc에서는 fullpage적용으로 스크롤바가 없고, 태블릿 부터는 스크롤바가 생기는 변화를 위해 제이쿼리말고 자바스크립트에 있는 크기 가져오기를 사용합시다
+                    if (window.innerWidth > 1152) {  
+                        createFullpage();
+                    } else {
+                        // fullpage가 동작중인 경우만 제거
+                        if ($('#fullpage').hasClass('fullpage-wrapper')) {
+                            fullpage_api.destroy('all'); // 적용된 fullpage를 제거할 경우 사용
+                        }
+                    }
+                }, 100);
+            });
+            $(window).trigger('resize');
+
+            function createFullpage() {
+                $('#fullpage').fullpage({
+                    scrollingSpeed: 800,
+                    afterLoad: function (origin, destination, direction) {
+                        // PC - 애니메이션 (페이지 도착 후에 천천히)
+                        for (let i = 0; i < 6; i++) {
+                            if (destination.index === i) {
+                                $('.greenbox').addClass('on'); // 모든 .greenbox 실행
+                                $('#cnt' + (i +1)).siblings().find('.movetop, .verticalscroll, .greenbox').removeClass('on'); // 나를 제외한 모든 애니메이션 제거
+                                if (destination.index === 0) {
+                                    $('.movetop, .verticalscroll, .greenbox').removeClass('on'); // 모든 애니메이션 초기화
+                                }
+                            }
+                        }
+                    },
+                    onLeave: function (origin, destination, direction) {
+                        // 헤더 & top 버튼
+                        if (origin.index === 0 && destination.index === 1 && direction === 'down') {
+                            $('.top_btn').fadeIn();
+                            $('#pc_head').addClass('on active');
+                        }
+                        else if (destination.index === 0 && direction === 'up') {
+                            $('#pc_head').removeClass('on active');
+                            $('.top_btn').fadeOut();
+                        }
+                        else {
+                            $('#pc_head').addClass('on active');
+                        }
+                        
+                        // PC - 애니메이션 (페이지 도착 전에 빨리)
+                        for (let i = 1; i < 6; i++) {
+                            if (destination.index === 3) {
+                                $('.movetop, .verticalscroll').addClass('on'); // 모든 .movetop, .verticalscroll 실행
+                            } else if (destination.index === i) {
+                                $('.movetop').addClass('on'); // 모든 .movetop 실행
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
